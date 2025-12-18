@@ -18,6 +18,32 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
+// ==== Combo設定ここから ====
+
+// どのコンボが何番か
+enum combo_events {
+    TN_BTN1,  // T+N → 左クリック
+    NS_BTN2,  // N+S → 右クリック
+    COMBO_LENGTH
+};
+
+// コンボで使うキー列
+const uint16_t PROGMEM tn_combo[] = {KC_T, KC_N, COMBO_END};
+const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
+
+// コンボと出力キーの対応表
+combo_t key_combos[COMBO_LENGTH] = {
+    [TN_BTN1] = COMBO(tn_combo, KC_BTN1),
+    [NS_BTN2] = COMBO(ns_combo, KC_BTN2),
+};
+
+// Layer0 のときだけコンボを有効にしたい場合
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    return get_highest_layer(layer_state) == 0;
+}
+
+// ==== Combo設定ここまで ====
+
 #include "quantum.h"
 
 // clang-format off
@@ -69,22 +95,4 @@ void oledkit_render_info_user(void) {
     keyball_oled_render_layerinfo();
 }
 #endif
-
-
-#ifdef OLED_ENABLE
-const uint16_t PROGMEM tn_combo[] = {KC_T, KC_N, COMBO_END};
-const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
-
-enum combo_events {
-    TN_BTN1,
-    NS_BTN2,
-    COMBO_LENGTH
-};
-
-combo_t key_combos[COMBO_LENGTH] = {
-    [TN_BTN1] = COMBO(tn_combo, KC_BTN1),
-    [NS_BTN2] = COMBO(ns_combo, KC_BTN2),
-};
-#endif
-
 
