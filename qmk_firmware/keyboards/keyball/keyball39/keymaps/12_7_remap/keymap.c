@@ -18,31 +18,38 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 
-// ==== Combo設定ここから ====
+// =====================
+// Combo definitions
+// =====================
 
-// どのコンボが何番か
+// コンボの種類ID（増やすときはここに追加）
 enum combo_events {
-    TN_BTN1,  // T+N → 左クリック
-    NS_BTN2,  // N+S → 右クリック
+    TN_BTN1,   // T + N -> Mouse Button 1
+    NS_BTN2,   // N + S -> Mouse Button 2
+    IA_LNG1,   // I + A -> 英数 (LANG1)
+    AO_LNG2,   // A + O -> かな (LANG2)
     COMBO_LENGTH
 };
 
-// コンボで使うキー列
+// コンボに使うキーの組み合わせ（順序は関係なし）
 const uint16_t PROGMEM tn_combo[] = {KC_T, KC_N, COMBO_END};
 const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
+const uint16_t PROGMEM ia_combo[] = {KC_I, KC_A, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {KC_A, KC_O, COMBO_END};
 
-// コンボと出力キーの対応表
+// コンボ本体
 combo_t key_combos[COMBO_LENGTH] = {
     [TN_BTN1] = COMBO(tn_combo, KC_BTN1),
     [NS_BTN2] = COMBO(ns_combo, KC_BTN2),
+    [IA_LNG1] = COMBO(ia_combo, KC_LNG1),
+    [AO_LNG2] = COMBO(ao_combo, KC_LNG2),
 };
 
-// Layer0 のときだけコンボを有効にしたい場合
+// Layer0でのみコンボ有効
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
-    return get_highest_layer(layer_state) == 0;
+    return (get_highest_layer(layer_state) == 0);
 }
 
-// ==== Combo設定ここまで ====
 
 #include "quantum.h"
 
