@@ -38,5 +38,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_AUTO_MOUSE_ENABLE
 #define AUTO_MOUSE_DEFAULT_LAYER 1
 #define COMBO_MUST_TAP_PER_COMBO
-#define COMBO_TERM 30
+#define COMBO_TERM 40
 #define TAPPING_TERM 180
+
+// 「コンボはタップとして成立したときだけ判定する」＝ホールドと両立の要
+#define COMBO_MUST_TAP_PER_COMBO
+
+// タップホールドの暴発を減らす（好みで）
+#define IGNORE_MOD_TAP_INTERRUPT

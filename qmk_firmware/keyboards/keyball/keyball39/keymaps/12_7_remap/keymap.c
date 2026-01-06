@@ -19,36 +19,56 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 
 // =====================
+// Tap-Hold aliases (Layer0用)
+// =====================
+// T：ホールドでShift
+#define T_SFT   MT(MOD_LSFT, KC_T)
+
+// N：ホールドでLayer3
+#define N_L3    LT(3, KC_N)
+
+// S：ホールドでAlt
+#define S_ALT   MT(MOD_LALT, KC_S)
+
+// I：ホールドでAlt
+#define I_ALT   MT(MOD_LALT, KC_I)
+
+// A：ホールドでWindows/Command（GUI）
+#define A_GUI   MT(MOD_LGUI, KC_A)
+
+// O：ホールドでShift（右でも左でもOK。ここではLSFT）
+#define O_SFT   MT(MOD_LSFT, KC_O)
+
+
+// =====================
 // Combo definitions
 // =====================
-
-// コンボの種類ID（増やすときはここに追加）
 enum combo_events {
-    TN_BTN1,   // T + N -> Mouse Button 1
-    NS_BTN2,   // N + S -> Mouse Button 2
-    IA_LNG1,   // I + A -> 英数 (LANG1)
-    AO_LNG2,   // A + O -> かな (LANG2)
+    C_TN_BTN1,   // T+N -> Mouse Btn1
+    C_NS_BTN2,   // N+S -> Mouse Btn2
+    C_IA_LNG1,   // I+A -> 英数 (LANG1)
+    C_AO_LNG2,   // A+O -> かな (LANG2)
     COMBO_LENGTH
 };
 
-// コンボに使うキーの組み合わせ（順序は関係なし）
-const uint16_t PROGMEM tn_combo[] = {KC_T, KC_N, COMBO_END};
-const uint16_t PROGMEM ns_combo[] = {KC_N, KC_S, COMBO_END};
-const uint16_t PROGMEM ia_combo[] = {KC_I, KC_A, COMBO_END};
-const uint16_t PROGMEM ao_combo[] = {KC_A, KC_O, COMBO_END};
+// ★重要：コンボ側も「KC_T」などではなく、上のエイリアス（T_SFT等）を使う
+const uint16_t PROGMEM tn_combo[] = {T_SFT, N_L3, COMBO_END};
+const uint16_t PROGMEM ns_combo[] = {N_L3, S_ALT, COMBO_END};
+const uint16_t PROGMEM ia_combo[] = {I_ALT, A_GUI, COMBO_END};
+const uint16_t PROGMEM ao_combo[] = {A_GUI, O_SFT, COMBO_END};
 
-// コンボ本体
 combo_t key_combos[COMBO_LENGTH] = {
-    [TN_BTN1] = COMBO(tn_combo, KC_BTN1),
-    [NS_BTN2] = COMBO(ns_combo, KC_BTN2),
-    [IA_LNG1] = COMBO(ia_combo, KC_LNG1),
-    [AO_LNG2] = COMBO(ao_combo, KC_LNG2),
+    [C_TN_BTN1] = COMBO(tn_combo, KC_BTN1),
+    [C_NS_BTN2] = COMBO(ns_combo, KC_BTN2),
+    [C_IA_LNG1] = COMBO(ia_combo, KC_LNG1),
+    [C_AO_LNG2] = COMBO(ao_combo, KC_LNG2),
 };
 
-// Layer0でのみコンボ有効
+// Layer0限定でコンボ有効（必要なら残す）
 bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
     return (get_highest_layer(layer_state) == 0);
 }
+
 
 
 #include "quantum.h"
@@ -56,12 +76,12 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
-  [0] = LAYOUT_universal(
-    KC_Q     , KC_W     , KC_E     , KC_R     , KC_T     ,                            KC_Y     , KC_U     , KC_I     , KC_O     , KC_P     ,
-    KC_A     , KC_S     , KC_D     , KC_F     , KC_G     ,                            KC_H     , KC_J     , KC_K     , KC_L     , KC_MINS  ,
-    KC_Z     , KC_X     , KC_C     , KC_V     , KC_B     ,                            KC_N     , KC_M     , KC_COMM  , KC_DOT   , KC_SLSH  ,
-    KC_LCTL  , KC_LGUI  , KC_LALT  ,LSFT_T(KC_LNG2),LT(1,KC_SPC),LT(3,KC_LNG1),KC_BSPC,LT(2,KC_ENT),LSFT_T(KC_LNG2),KC_RALT,KC_RGUI, KC_RSFT
-  ),
+[0] = LAYOUT_universal(
+  KC_Q,   KC_W,   KC_E,   KC_R,   T_SFT,                          KC_Y, KC_U, I_ALT, O_SFT, KC_P,
+  A_GUI,  S_ALT,  KC_D,   KC_F,   KC_G,                          KC_H, KC_J, KC_K, KC_L,  KC_MINS,
+  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                          N_L3, KC_M, KC_COMM, KC_DOT, KC_SLSH,
+  KC_LCTL, KC_LGUI, KC_LALT, LSFT_T(KC_LNG2), LT(1,KC_SPC), LT(3,KC_LNG1), KC_BSPC, LT(2,KC_ENT), LSFT_T(KC_LNG2), KC_RALT, KC_RGUI, KC_RSFT
+),
 
   [1] = LAYOUT_universal(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
