@@ -37,8 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum combo_events {
     C_TN_BTN1,   // T+N -> Mouse Btn1
     C_NS_BTN2,   // N+S -> Mouse Btn2
-    C_IA_LNG1,   // I+A -> かな (LANG2)
-    C_AO_LNG2,   // A+O -> 英数 (LANG1)
+    C_IA_LNG2,   // I+A -> 英数 (LANG2)
+    C_AO_LNG1,   // A+O -> かな (LANG1)
     COMBO_LENGTH
 };
 
@@ -51,8 +51,8 @@ const uint16_t PROGMEM ao_combo[] = {A_GUI, O_SFT, COMBO_END};
 combo_t key_combos[COMBO_LENGTH] = {
     [C_TN_BTN1] = COMBO(tn_combo, KC_BTN1),
     [C_NS_BTN2] = COMBO(ns_combo, KC_BTN2),
-    [C_IA_LNG1] = COMBO(ao_combo, KC_LNG2),
-    [C_AO_LNG2] = COMBO(ia_combo, KC_LNG1),
+    [C_IA_LNG2] = COMBO(ia_combo, KC_LNG2),
+    [C_AO_LNG1] = COMBO(ao_combo, KC_LNG1),
 };
 
 // Layer0限定でコンボ有効（必要なら残す）
