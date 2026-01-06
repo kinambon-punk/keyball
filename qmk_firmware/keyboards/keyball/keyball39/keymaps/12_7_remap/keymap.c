@@ -69,18 +69,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
 
 [0] = LAYOUT_universal(
-  // row1 (10)
-  KC_TAB,  KC_L,    KC_U,    S(KC_COMM), S(KC_DOT),                          KC_F,    KC_W,   KC_R,   KC_Y,   KC_P,
-
-  // row2 (10)
-  E_CTL,   I_ALT,   A_GUI,   O_SFT,      KC_MINS,                           KC_K,    T_SFT,  N_L3,  S_ALT,  H_CTL,
-
-  // row3 (10)
-  KC_Z,    KC_X,    KC_C,    KC_V,       KC_SLSH,                           KC_G,    KC_D,   KC_M,   KC_J,   KC_B,
-
-  // row4 (12)  ※ここが重要：12個（=左右6ずつ想定）
-  KC_Q,            C(S(KC_N)),     G(S(KC_S)),     MT(MOD_LCTL, KC_F7), LT(1, KC_ENT), MT(MOD_LALT, KC_BSPC),
-LT(3, KC_TAB),   LT(2, KC_SPC),  KC_ESC,         _______,             _______,       _______
+  KC_TAB,   KC_L,    KC_U,    S(KC_COMM), S(KC_DOT),                          KC_F,    KC_W,   KC_R,   KC_Y,   KC_P,
+  E_CTL,    I_ALT,   A_GUI,   O_SFT,      KC_MINS,                           KC_K,    T_SFT,  N_L3,  S_ALT,  H_CTL,
+  KC_Z,     KC_X,    KC_C,    KC_V,       KC_SLSH,                           KC_G,    KC_D,   KC_M,   KC_J,   KC_B,
+  KC_Q,     C(S(KC_N)), G(S(KC_S)), MT(MOD_LCTL, KC_F7), LT(1, KC_ENT), MT(MOD_LALT, KC_BSPC),
+  LT(3, KC_TAB), LT(2, KC_SPC), KC_ESC, _______, _______, _______
+),
 
 
   [1] = LAYOUT_universal(
