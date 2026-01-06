@@ -43,6 +43,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // 「コンボはタップとして成立したときだけ判定する」＝ホールドと両立の要
 #define COMBO_MUST_TAP_PER_COMBO
-
-// タップホールドの暴発を減らす（好みで）
-#define IGNORE_MOD_TAP_INTERRUPT
