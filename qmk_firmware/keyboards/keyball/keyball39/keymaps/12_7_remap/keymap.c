@@ -76,6 +76,7 @@ bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
+
 [0] = LAYOUT_universal(
   KC_Q,   KC_W,   KC_E,   KC_R,   T_SFT,                          KC_Y, KC_U, I_ALT, O_SFT, KC_P,
   A_GUI,  S_ALT,  KC_D,   KC_F,   KC_G,                          KC_H, KC_J, KC_K, KC_L,  KC_MINS,
@@ -101,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     RGB_TOG  , AML_TO   , AML_I50  , AML_D50  , _______  ,                            _______  , _______  , SSNP_HOR , SSNP_VRT , SSNP_FRE ,
     RGB_MOD  , RGB_HUI  , RGB_SAI  , RGB_VAI  , SCRL_DVI ,                            _______  , _______  , _______  , _______  , _______  ,
     RGB_RMOD , RGB_HUD  , RGB_SAD  , RGB_VAD  , SCRL_DVD ,                            CPI_D1K  , CPI_D100 , CPI_I100 , CPI_I1K  , KBC_SAVE ,
-    QK_BOOT  , KBC_RST  , _______  , _______  , _______  , _______  ,      _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
+    QK_BOOT  , KBC_RST  , _______  , _______  , _______  , QK_CLEAR_EEPROM,      _______  , _______  , _______  , _______  , KBC_RST  , QK_BOOT
   ),
 };
 // clang-format on
