@@ -78,11 +78,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
 
 [0] = LAYOUT_universal(
-  KC_Q,   KC_W,   KC_E,   KC_R,   T_SFT,                          KC_Y, KC_U, I_ALT, O_SFT, KC_P,
-  A_GUI,  S_ALT,  KC_D,   KC_F,   KC_G,                          KC_H, KC_J, KC_K, KC_L,  KC_MINS,
-  KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                          N_L3, KC_M, KC_COMM, KC_DOT, KC_SLSH,
-  KC_LCTL, KC_LGUI, KC_LALT, LSFT_T(KC_LNG2), LT(1,KC_SPC), LT(3,KC_LNG1), KC_BSPC, LT(2,KC_ENT), LSFT_T(KC_LNG2), KC_RALT, KC_RGUI, KC_RSFT
-),
+  // ───────── Left hand ─────────                         ───────── Right hand ─────────
+  KC_TAB,   KC_L,    KC_U,    S(KC_COMM), S(KC_DOT),         KC_F,    KC_W,    KC_R,    KC_Y,    KC_P,
+  E_CTL,    I_ALT,   A_GUI,   O_SFT,     KC_MINS,            KC_K,    T_SFT,   N_L3,    S_ALT,   H_CTL,
+  KC_Z,     KC_X,    KC_C,    KC_V,      KC_SLSH,            KC_G,    KC_D,    KC_M,    KC_J,    KC_B,
+
+  // ───────── Thumbs / bottom row ─────────
+  KC_Q,     C(S(KC_N)),       G(S(KC_S)),       MT(MOD_LCTL, KC_F7),  LT(1, KC_ENT),
+  MT(MOD_LALT, KC_BSPC),      LT(3, KC_TAB),    LT(2, KC_SPC),        KC_ESC
+);
 
   [1] = LAYOUT_universal(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
