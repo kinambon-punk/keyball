@@ -37,8 +37,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum combo_events {
     C_TN_BTN1,   // T+N -> Mouse Btn1
     C_NS_BTN2,   // N+S -> Mouse Btn2
-    C_IA_LNG1,   // I+A -> 英数 (LANG1)
-    C_AO_LNG2,   // A+O -> かな (LANG2)
+    C_IA_LNG1,   // I+A -> かな (LANG2)
+    C_AO_LNG2,   // A+O -> 英数 (LANG1)
     COMBO_LENGTH
 };
 
@@ -51,8 +51,8 @@ const uint16_t PROGMEM ao_combo[] = {A_GUI, O_SFT, COMBO_END};
 combo_t key_combos[COMBO_LENGTH] = {
     [C_TN_BTN1] = COMBO(tn_combo, KC_BTN1),
     [C_NS_BTN2] = COMBO(ns_combo, KC_BTN2),
-    [C_IA_LNG1] = COMBO(ia_combo, KC_LNG1),
-    [C_AO_LNG2] = COMBO(ao_combo, KC_LNG2),
+    [C_IA_LNG1] = COMBO(ao_combo, KC_LNG2),
+    [C_AO_LNG2] = COMBO(ia_combo, KC_LNG1),
 };
 
 // Layer0限定でコンボ有効（必要なら残す）
@@ -79,9 +79,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Z,    KC_X,    KC_C,    KC_V,       KC_SLSH,                           KC_G,    KC_D,   KC_M,   KC_J,   KC_B,
 
   // row4 (12)  ※ここが重要：12個（=左右6ずつ想定）
-  KC_Q,    C(S(KC_N)), G(S(KC_S)), KC_LNG1, MT(MOD_LCTL, KC_LNG2), MT(MOD_LCTL, KC_F7),
-  LT(1, KC_ENT), MT(MOD_LALT, KC_BSPC), LT(3, KC_TAB),  LT(2, KC_SPC), _______, KC_ESC
-),
+  KC_Q,            C(S(KC_N)),     G(S(KC_S)),     MT(MOD_LCTL, KC_F7), LT(1, KC_ENT), MT(MOD_LALT, KC_BSPC),
+LT(3, KC_TAB),   LT(2, KC_SPC),  KC_ESC,         _______,             _______,       _______
+
 
   [1] = LAYOUT_universal(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
