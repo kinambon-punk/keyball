@@ -21,23 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // =====================
 // Tap-Hold aliases (Layer0用)
 // =====================
-// T：ホールドでShift
-#define T_SFT   MT(MOD_LSFT, KC_T)
-
-// N：ホールドでLayer3
-#define N_L3    LT(3, KC_N)
-
-// S：ホールドでAlt
-#define S_ALT   MT(MOD_LALT, KC_S)
-
-// I：ホールドでAlt
-#define I_ALT   MT(MOD_LALT, KC_I)
-
-// A：ホールドでWindows/Command（GUI）
-#define A_GUI   MT(MOD_LGUI, KC_A)
-
-// O：ホールドでShift（右でも左でもOK。ここではLSFT）
-#define O_SFT   MT(MOD_LSFT, KC_O)
+#define E_CTL  MT(MOD_LCTL, KC_E)
+#define H_CTL  MT(MOD_LCTL, KC_H)
+#define I_ALT  MT(MOD_LALT, KC_I)
+#define S_ALT  MT(MOD_LALT, KC_S)
+#define A_GUI  MT(MOD_LGUI, KC_A)
+#define O_SFT  MT(MOD_LSFT, KC_O)
+#define T_SFT  MT(MOD_LSFT, KC_T)
+#define N_L3   LT(3, KC_N)
 
 
 // =====================
@@ -78,15 +69,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // keymap for default (VIA)
 
 [0] = LAYOUT_universal(
-  // ───────── Left hand ─────────                         ───────── Right hand ─────────
-  KC_TAB,   KC_L,    KC_U,    S(KC_COMM), S(KC_DOT),         KC_F,    KC_W,    KC_R,    KC_Y,    KC_P,
-  E_CTL,    I_ALT,   A_GUI,   O_SFT,     KC_MINS,            KC_K,    T_SFT,   N_L3,    S_ALT,   H_CTL,
-  KC_Z,     KC_X,    KC_C,    KC_V,      KC_SLSH,            KC_G,    KC_D,    KC_M,    KC_J,    KC_B,
+  // row1 (10)
+  KC_TAB,  KC_L,    KC_U,    S(KC_COMM), S(KC_DOT),                          KC_F,    KC_W,   KC_R,   KC_Y,   KC_P,
 
-  // ───────── Thumbs / bottom row ─────────
-  KC_Q,     C(S(KC_N)),       G(S(KC_S)),       MT(MOD_LCTL, KC_F7),  LT(1, KC_ENT),
-  MT(MOD_LALT, KC_BSPC),      LT(3, KC_TAB),    LT(2, KC_SPC),        KC_ESC
-);
+  // row2 (10)
+  E_CTL,   I_ALT,   A_GUI,   O_SFT,      KC_MINS,                           KC_K,    T_SFT,  N_L3,  S_ALT,  H_CTL,
+
+  // row3 (10)
+  KC_Z,    KC_X,    KC_C,    KC_V,       KC_SLSH,                           KC_G,    KC_D,   KC_M,   KC_J,   KC_B,
+
+  // row4 (12)  ※ここが重要：12個（=左右6ずつ想定）
+  KC_Q,    C(S(KC_N)), G(S(KC_S)), KC_LNG1, MT(MOD_LCTL, KC_LNG2), MT(MOD_LCTL, KC_F7),
+  LT(1, KC_ENT), MT(MOD_LALT, KC_BSPC), LT(3, KC_TAB),  LT(2, KC_SPC), _______, KC_ESC
+),
 
   [1] = LAYOUT_universal(
     KC_F1    , KC_F2    , KC_F3    , KC_F4    , KC_RBRC  ,                            KC_F6    , KC_F7    , KC_F8    , KC_F9    , KC_F10   ,
